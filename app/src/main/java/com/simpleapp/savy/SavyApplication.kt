@@ -8,7 +8,6 @@ class SavyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
-
         val configuration = RealmConfiguration.Builder()
                 .name("savy")
                 .schemaVersion(1)

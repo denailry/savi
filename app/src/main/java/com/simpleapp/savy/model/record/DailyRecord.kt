@@ -28,7 +28,8 @@ class DailyRecord(datestamp: Int) {
     fun saveNewActivity(name: String, value: Int, notes: String, type: Byte) {
         val realm = Realm.getDefaultInstance()
         realm.executeTransaction{
-            val record = realm.createObject(Record::class.java, Calendar.getInstance().timeInMillis)
+            val millis = Calendar.getInstance().timeInMillis
+            val record = realm.createObject(Record::class.java, millis)
             record.datestamp = date.toDatestamp()
             record.name = name
             record.value = value

@@ -8,6 +8,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.extensions.LayoutContainer
 import android.content.Context
+import android.graphics.Color
 import android.widget.DatePicker
 import com.simpleapp.savy.calculator.CalculatorActivity
 import com.simpleapp.savy.history.HistoryActivity
@@ -46,8 +47,12 @@ class MainActivity : AppCompatActivity() {
         viewActivityType.setOnClickListener { _ ->
             if (activityType == Record.EXPENSE) {
                 activityType = Record.INCOME
+                tvTypeIncome.setBackgroundColor(Color.parseColor("#00ae00"))
+                tvTypeExpense.setBackgroundColor(Color.parseColor("#aaaaaa"))
             } else {
                 activityType = Record.EXPENSE
+                tvTypeIncome.setBackgroundColor(Color.parseColor("#aaaaaa"))
+                tvTypeExpense.setBackgroundColor(Color.parseColor("#f09500"))
             }
         }
         inActivityValue.setOnClickListener{_ ->

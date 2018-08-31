@@ -1,6 +1,7 @@
 package com.simpleapp.savy.recordedit
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.simpleapp.savy.R
@@ -65,8 +66,12 @@ class RecordEditActivity : AppCompatActivity() {
         viewActivityType.setOnClickListener { _ ->
             if (activityType == Record.EXPENSE) {
                 activityType = Record.INCOME
+                tvTypeIncome.setBackgroundColor(Color.parseColor("#00ae00"))
+                tvTypeExpense.setBackgroundColor(Color.parseColor("#aaaaaa"))
             } else {
                 activityType = Record.EXPENSE
+                tvTypeIncome.setBackgroundColor(Color.parseColor("#aaaaaa"))
+                tvTypeExpense.setBackgroundColor(Color.parseColor("#f09500"))
             }
         }
     }
