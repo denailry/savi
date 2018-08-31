@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Savy</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_record_edit">RecordEditActivity</string>
+    <string name="date_day_number_sample">21</string>
+    <string name="date_day_name_sample">Monday</string>
+    <string name="date_month_sample">August</string>
+    <string name="date_year_sample">2018</string>
+    <string name="activity_guidetext">Add Your Financial Activity</string>
+    <string name="activity_name">Name</string>
+    <string name="activity_name_hint">Lunch</string>
+    <string name="activity_value">Value</string>
+    <string name="activity_value_hint">10.000</string>
+    <string name="activity_note">Note</string>
+    <string name="activity_note_hint">burger,juice</string>
+    <string name="activity_save">Save</string>
+    <string name="activity_delete">DELETE</string>
+    <string name="activity_history">Activity History</string>
+    <string name="daily_income">INCOME</string>
+    <string name="daily_expense">EXPENSE</string>
+    <string name="wallet_balance">BALANCE</string>
+    <string name="money_sample_1">200.000</string>
+    <string name="money_sample_2">500.000</string>
+    <string name="money_sample_3">1.000.000</string>
+    <string name="activity_type_income">IN</string>
+    <string name="activity_type_expense">EX</string>
+    <string name="calculator_delete_all">C</string>
+    <string name="calculator_delete_last">Del</string>
+    <string name="calculator_0">0</string>
+    <string name="calculator_000">000</string>
+    <string name="calculator_1">1</string>
+    <string name="calculator_2">2</string>
+    <string name="calculator_3">3</string>
+    <string name="calculator_4">4</string>
+    <string name="calculator_5">5</string>
+    <string name="calculator_6">6</string>
+    <string name="calculator_7">7</string>
+    <string name="calculator_8">8</string>
+    <string name="calculator_9">9</string>
+    <string name="calculator_divide">/</string>
+    <string name="calculator_multiply">X</string>
+    <string name="calculator_plus">+</string>
+    <string name="calculator_minus">-</string>
+    <string name="calculator_equal">=</string>
+    <string name="calculator_save">OK</string>
+</resources>
