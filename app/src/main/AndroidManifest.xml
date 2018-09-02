@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simpleapp.savy">
+    package="com.simpleapp.savi">
 
     <application
-        android:name=".SavyApplication"
+        android:name="com.simpleapp.savi.SaviApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_v2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_v2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <activity android:name="com.simpleapp.savi.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".history.HistoryActivity" />
-        <activity android:name=".calculator.CalculatorActivity"/>
-        <activity android:name=".recordedit.RecordEditActivity"/>
+        <activity android:name="com.simpleapp.savi.MainActivity"/>
+        <activity android:name="com.simpleapp.savi.history.HistoryActivity" />
+        <activity android:name="com.simpleapp.savi.calculator.CalculatorActivity"/>
+        <activity android:name="com.simpleapp.savi.recordedit.RecordEditActivity"/>
     </application>
 
 </manifest>
