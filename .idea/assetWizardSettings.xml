@@ -19,19 +19,29 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/icons8-double-left-40.png" />
-                                      <entry key="outputName" value="btn_date_yesterday" />
+                                      <entry key="imageAsset" value="D:\Download\icons8-backspace-96.png" />
+                                      <entry key="outputName" value="btn_backspace" />
                                       <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="ee3333" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="launcher">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
+                                      <entry key="foregroundImage" value="D:\Pictures\Savy\savy-logo-full.png" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
+                                      <entry key="outputName" value="ic_launcher_v2" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </PersistentState>

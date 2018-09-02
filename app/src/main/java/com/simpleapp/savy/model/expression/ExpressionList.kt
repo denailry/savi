@@ -3,19 +3,19 @@ package com.simpleapp.savy.model.expression
 class ExpressionList {
     companion object {
         val operators = arrayOf('+', '-', '*', '/')
-        fun evaluate(s : String) : Int {
+        fun evaluate(s : String) : Long {
             val expList = ExpressionList()
 
             var current = ""
-            var leftOperand: Int? = null
+            var leftOperand: Long? = null
             var operator: Char? = null
-            var rightOperand: Int
+            var rightOperand: Long
             for (c in s) {
                 if (c in operators) {
                     if (leftOperand == null) {
-                        leftOperand = current.toInt()
+                        leftOperand = current.toLong()
                     } else {
-                        rightOperand = current.toInt()
+                        rightOperand = current.toLong()
                         expList.add(Expression(leftOperand, operator!!, rightOperand))
                         leftOperand = rightOperand
                     }
@@ -25,7 +25,7 @@ class ExpressionList {
                     current += c
                 }
             }
-            expList.add(Expression(leftOperand!!, operator!!, current.toInt()))
+            expList.add(Expression(leftOperand!!, operator!!, current.toLong()))
             return expList.evaluate()
         }
     }
@@ -48,8 +48,8 @@ class ExpressionList {
         }
     }
 
-    fun evaluate() : Int {
-        var result: Int? = null
+    fun evaluate() : Long {
+        var result: Long? = null
         for (index in firstPriorIndexList) {
             result = expList[index].calculate()
         }

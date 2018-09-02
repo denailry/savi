@@ -21,30 +21,41 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView
-            android:id="@+id/tvDeleteAll"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/viewDeleteAll"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/calculator_delete_all"/>
+            android:gravity="center">
+            <Button
+                android:id="@+id/tvDeleteAll"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_circled_c" />
+        </LinearLayout>
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="#aaaaaa"/>
-        <TextView
-            android:id="@+id/tvDelete"
+            android:background="@color/unselected"/>
+        <LinearLayout
+            android:id="@+id/viewDelete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/calculator_delete_last"/>
+            android:gravity="center">
+            <Button
+                android:id="@+id/tvDelete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_backspace" />
+        </LinearLayout>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#aaaaaa"/>
+        android:background="@color/unselected"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -61,21 +72,24 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_7"/>
+                android:text="@string/calculator_7"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tv4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_4"/>
+                android:text="@string/calculator_4"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tv1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_1"/>
+                android:text="@string/calculator_1"
+                android:textSize="18sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -88,21 +102,24 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_8"/>
+                android:text="@string/calculator_8"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tv5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_5"/>
+                android:text="@string/calculator_5"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tv2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_2"/>
+                android:text="@string/calculator_2"
+                android:textSize="18sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -115,21 +132,24 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_9"/>
+                android:text="@string/calculator_9"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tv6"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_6"/>
+                android:text="@string/calculator_6"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tv3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_3"/>
+                android:text="@string/calculator_3"
+                android:textSize="18sp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -142,28 +162,32 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_divide"/>
+                android:text="@string/calculator_divide"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tvMultiply"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_multiply"/>
+                android:text="@string/calculator_multiply"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tvMinus"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_minus"/>
+                android:text="@string/calculator_minus"
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/tvPlus"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/calculator_plus"/>
+                android:text="@string/calculator_plus"
+                android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -176,20 +200,26 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/calculator_0"/>
+            android:text="@string/calculator_0"
+            android:textSize="18sp"/>
         <TextView
             android:id="@+id/tvTripleZero"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/calculator_000"/>
+            android:text="@string/calculator_000"
+            android:textSize="18sp"/>
         <TextView
             android:id="@+id/tvEqualOK"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="@string/calculator_save"/>
+            android:text="@string/calculator_save"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
     </LinearLayout>
 </LinearLayout>

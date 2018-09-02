@@ -1,13 +1,15 @@
 package com.simpleapp.savy.model.record
 
+import com.simpleapp.savy.TransactionManager
 import com.simpleapp.savy.model.Date
+import com.simpleapp.savy.model.Wallet
 import io.realm.Realm
 import java.util.*
 
-class DailyRecord(datestamp: Int) {
+class DailyRecord(datestamp: Int, val wallet: Wallet) {
     val date: Date = Date(datestamp)
-    var income: Int = 0
-    var expense: Int = 0
+    var income: Long = 0
+    var expense: Long = 0
     val recordList: ArrayList<Record> = ArrayList()
 
     init {
@@ -25,20 +27,8 @@ class DailyRecord(datestamp: Int) {
         }
     }
 
-    fun saveNewActivity(name: String, value: Int, notes: String, type: Byte) {
-        val realm = Realm.getDefaultInstance()
-        realm.executeTransaction{
-            val millis = Calendar.getInstance().timeInMillis
-            val record = realm.createObject(Record::class.java, millis)
-            record.datestamp = date.toDatestamp()
-            record.name = name
-            record.value = value
-            record.notes = notes
-            when(type) {
-                Record.INCOME -> record.type = 0
-                Record.EXPENSE -> record.type = 1
-            }
-        }
+    fun saveNewActivity(name: String, value: Long, notes: String, type: Byte) {
+        TransactionManager.new(name, value, notes, type, wallet, date.toDatestamp())
         when(type) {
             Record.INCOME -> income += value
             Record.EXPENSE -> expense += value

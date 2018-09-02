@@ -6,8 +6,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_record_edit">RecordEditActivity</string>
     <string name="date_day_number_sample">21</string>
-    <string name="date_day_name_sample">Monday</string>
-    <string name="date_month_sample">August</string>
+    <string name="date_day_name_sample">Mon</string>
+    <string name="date_month_sample">Aug</string>
     <string name="date_year_sample">2018</string>
     <string name="activity_guidetext">Add Your Financial Activity</string>
     <string name="activity_name">Name</string>
@@ -46,4 +46,7 @@
     <string name="calculator_minus">-</string>
     <string name="calculator_equal">=</string>
     <string name="calculator_save">OK</string>
+
+    <string name="large_number_exception">Oops, too large money</string>
+    <string name="wallet_limit_exception">Oops, wallet is not large enough</string>
 </resources>

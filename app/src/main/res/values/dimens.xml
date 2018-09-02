@@ -1,3 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="in_ex_sum_normal">9sp</dimen>
+    <dimen name="in_ex_sum_small">7sp</dimen>
+    <dimen name="balance_sum_normal">11sp</dimen>
+    <dimen name="balance_sum_small">9sp</dimen>
 </resources>

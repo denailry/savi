@@ -1,15 +1,15 @@
 package com.simpleapp.savy.model.expression
 
 class Expression(
-        var leftOperand: Int,
+        var leftOperand: Long,
         var operator: Char,
-        var rightOperand: Int
+        var rightOperand: Long
 ) {
     var leftExpression: Expression? = null
     var rightExpression: Expression? = null
 
-    fun calculate() : Int? {
-        val result : Int?
+    fun calculate() : Long? {
+        val result : Long?
         when(operator){
             '+' -> result = leftOperand + rightOperand
             '-' -> result = leftOperand - rightOperand

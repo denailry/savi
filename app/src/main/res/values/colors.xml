@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#4C9920</color>
+    <color name="colorPrimaryDark">#006400</color>
+    <color name="colorAccent">#EFA329</color>
+    <color name="colorAccentLight">#FEFCE7</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="unselected">#DDDDDD</color>
+    <color name="disabled">#AAAAAA</color>
+    <color name="income">#2482FD</color>
+    <color name="expense">#FB4242</color>
+    <color name="deletePrimary">#EE3333</color>
 </resources>

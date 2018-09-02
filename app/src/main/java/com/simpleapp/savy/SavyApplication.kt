@@ -1,6 +1,7 @@
 package com.simpleapp.savy
 
 import android.app.Application
+import com.simpleapp.savy.model.Wallet
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -13,7 +14,15 @@ class SavyApplication : Application() {
                 .schemaVersion(1)
                 .build()
         Realm.setDefaultConfiguration(configuration)
-        Realm.getInstance(configuration)
+        initWallet(Realm.getInstance(configuration))
+    }
+
+    private fun initWallet(realm: Realm) {
+        if (realm.where(Wallet::class.java).equalTo("name", "My Wallet").findFirst() == null) {
+            realm.executeTransaction{
+                realm.createObject(Wallet::class.java, "My Wallet")
+            }
+        }
     }
 
     override fun onTerminate() {
