@@ -1,5 +1,6 @@
 package com.simpleapp.savi.recordedit
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -36,11 +37,47 @@ class RecordEditActivity : AppCompatActivity() {
                 .equalTo("id", intent.getLongExtra("id", 0L))
                 .findFirst()
         inActivityName.setText(record!!.name)
+        inActivityName.addTextChangedListener(NameTextWatcher())
         inActivityValue.setText(PublicMethods.moneyFormat(record!!.value.toString()))
         inActivityNote.setText(record!!.notes)
-        activityType = record!!.type
         previousName = record!!.name
         previousValue = record!!.value
+        activityType = record!!.type
+        refreshActivityType()
+    }
+
+    inner class NameTextWatcher : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            inActivityName.removeTextChangedListener(this)
+            s?.replace(0, s.length, normalize(s.toString()))
+            inActivityName.addTextChangedListener(this)
+        }
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (count == 1 && start == 0) {
+                btnSaveActivity.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+            } else if (count == 0 && start == 0) {
+                btnSaveActivity.setBackgroundColor(resources.getColor(R.color.disabled))
+            }
+        }
+    }
+
+    private fun normalize(s : String) : String {
+        var res = ""
+        var prevC : Char? = null
+        for (i : Int in 0.until(s.length)) {
+            if (prevC == null || prevC == ' ') {
+                if (s[i] in 'a'..'z') {
+                    res += s[i].toUpperCase()
+                } else if (s[i] != ' ') {
+                    res += s[i]
+                }
+            } else {
+                res += s[i]
+            }
+            prevC = s[i]
+        }
+        return res
     }
 
     private fun setupTextChangeListener() {
@@ -65,6 +102,8 @@ class RecordEditActivity : AppCompatActivity() {
                         .setValue(inActivityValue.text.toString().replace(".","").toLong())
                         .setNotes(inActivityNote.text.toString())
                         .setType(activityType)
+                        .setWallet("My Wallet")
+                        .update()
                 finish()
             }
         }
@@ -84,20 +123,25 @@ class RecordEditActivity : AppCompatActivity() {
             startActivityForResult(intent, 1)
         }
         viewActivityType.setOnClickListener { _ ->
-            if (activityType == Record.EXPENSE) {
-                activityType = Record.INCOME
-                tvTypeIncome.setBackgroundColor(Color.parseColor("#00ae00"))
-                tvTypeExpense.setBackgroundColor(Color.parseColor("#aaaaaa"))
-            } else {
-                activityType = Record.EXPENSE
-                tvTypeIncome.setBackgroundColor(Color.parseColor("#aaaaaa"))
-                tvTypeExpense.setBackgroundColor(Color.parseColor("#f09500"))
-            }
+            if (activityType == Record.EXPENSE) activityType = Record.INCOME else activityType = Record.EXPENSE
+            refreshActivityType()
+        }
+    }
+
+    private fun refreshActivityType() {
+        if (activityType == Record.INCOME) {
+            tvTypeIncome.setBackgroundColor(resources.getColor(R.color.colorAccent))
+            tvTypeExpense.setBackgroundColor(resources.getColor(R.color.unselected))
+        } else {
+            tvTypeIncome.setBackgroundColor(resources.getColor(R.color.unselected))
+            tvTypeExpense.setBackgroundColor(resources.getColor(R.color.colorAccent))
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        inActivityValue.setText(PublicMethods.moneyFormat(data!!.getLongExtra("value", 0).toString()))
+        if (resultCode == Activity.RESULT_OK) {
+            inActivityValue.setText(PublicMethods.moneyFormat(data!!.getLongExtra("value", 0).toString()))
+        }
     }
 }
