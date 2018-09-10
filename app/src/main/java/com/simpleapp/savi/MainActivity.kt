@@ -11,6 +11,7 @@ import kotlinx.android.extensions.LayoutContainer
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
@@ -25,6 +26,7 @@ import com.simpleapp.savi.model.Date
 import com.simpleapp.savi.model.Wallet
 import com.simpleapp.savi.model.record.Record
 import com.simpleapp.savi.model.suggestion.Aggregator
+import kotlinx.android.synthetic.main.adapter_history.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -124,9 +126,9 @@ class MainActivity : AppCompatActivity() {
         setValue(this.records!!.income.toString(), TYPE_INCOME)
         setValue(this.records!!.expense.toString(), TYPE_EXPENSE)
         tvDayNumber.text = date.day.toString()
-        tvMonthMain.text = Date.MonthName(date.month)?.substring(0, 3)
+        tvMonthMain.text = Date.MonthName(this, date.month)?.substring(0, 3)
         tvYearMain.text = date.year.toString()
-        tvDayNameMain.text = date.getDayName()?.substring(0, 3)
+        tvDayNameMain.text = date.getDayName(this)?.substring(0, 3)
     }
 
     private fun setValue(value: String, type: Byte) {
@@ -165,19 +167,18 @@ class MainActivity : AppCompatActivity() {
                 activityType = Record.INCOME
                 tvTypeIncome.setBackgroundColor(resources.getColor(R.color.colorAccent))
                 tvTypeExpense.setBackgroundColor(resources.getColor(R.color.unselected))
+                inActivityName.hint = resources.getString(R.string.activity_name_hint_income)
             } else {
                 activityType = Record.EXPENSE
                 tvTypeIncome.setBackgroundColor(resources.getColor(R.color.unselected))
                 tvTypeExpense.setBackgroundColor(resources.getColor(R.color.colorAccent))
+                inActivityName.hint = resources.getString(R.string.activity_name_hint_expense)
             }
         }
         inActivityValue.setOnClickListener{_ ->
-            val value : Long
-            if (inActivityValue.text.length == 0) {
-                value = 0
-            } else {
-                value = inActivityValue.text.toString().replace(".","").toLong()
-            }
+            val textValue = inActivityValue.text.toString()
+            val value = if (textValue.isEmpty()) 0L else textValue.replace(".","").toLong()
+
             intent = Intent(this, CalculatorActivity::class.java)
             intent.putExtra("value", value)
             startActivityForResult(intent, RESULT_CALCULATOR)
@@ -194,7 +195,13 @@ class MainActivity : AppCompatActivity() {
         btnPreviousDay.setOnClickListener{ _ ->
             changeDate(records!!.date.yesterday())
         }
+        viewPreviousDay.setOnClickListener{ _ ->
+            changeDate(records!!.date.yesterday())
+        }
         btnNextDay.setOnClickListener{ _ ->
+            changeDate(records!!.date.tommorow())
+        }
+        viewNextDay.setOnClickListener{ _ ->
             changeDate(records!!.date.tommorow())
         }
     }
@@ -208,8 +215,10 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when(requestCode) {
-                RESULT_CALCULATOR -> inActivityValue.setText(
-                        PublicMethods.moneyFormat(data!!.getLongExtra("value", 0).toString()))
+                RESULT_CALCULATOR -> {
+                    val returnedValue = data!!.getLongExtra("value", 0)
+                    inActivityValue.setText(PublicMethods.moneyFormat(returnedValue.toString()))
+                }
             }
         }
         when(requestCode) {
@@ -227,13 +236,14 @@ class MainActivity : AppCompatActivity() {
     inner class OnClickSave(val context: Context) : View.OnClickListener {
         fun resetInput() {
             inActivityName.setText("")
-            inActivityValue.setText("0")
+            inActivityValue.setText("")
             inActivityNote.setText("")
         }
 
         fun saveNewActivity() {
+            val textValue = inActivityValue.text.toString()
             val name = inActivityName.text.toString()
-            val value = inActivityValue.text.toString().replace(".","").toLong()
+            val value = if (textValue.isEmpty()) 0L else textValue.replace(".","").toLong()
             val notes = inActivityNote.text.toString()
             records!!.saveNewActivity(name, value, notes, activityType)
             resetInput()
@@ -247,7 +257,8 @@ class MainActivity : AppCompatActivity() {
             refreshBalance()
         }
         override fun onClick(v: View?) {
-            if (inActivityName.text.length > 0) {
+            Log.d("TEST", inActivityName.text.length.toString())
+            if (!inActivityName.text.isEmpty()) {
                 saveNewActivity()
                 updateActivitySummary()
             }

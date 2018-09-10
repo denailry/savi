@@ -1,6 +1,7 @@
 package com.simpleapp.savi
 
 import android.annotation.TargetApi
+import android.app.Activity
 import android.app.Fragment
 import android.content.Context
 import android.content.Intent
@@ -22,7 +23,11 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reset.*
 import android.app.AlertDialog
+import android.content.SharedPreferences
+import android.support.v4.content.ContextCompat.startActivity
+import android.util.Log
 import android.widget.Toast
+import com.simpleapp.savi.lib.PublicMethods
 import com.simpleapp.savi.model.Wallet
 import com.simpleapp.savi.model.record.Record
 import com.simpleapp.savi.model.suggestion.*
@@ -41,9 +46,24 @@ import io.realm.Realm
  */
 class SettingsActivity : PreferenceActivity() {
 
+    var languageChangeListener: LanguageChangeListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupActionBar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        languageChangeListener = LanguageChangeListener(this)
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(languageChangeListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(languageChangeListener)
     }
 
     /**
@@ -75,7 +95,7 @@ class SettingsActivity : PreferenceActivity() {
     override fun isValidFragment(fragmentName: String): Boolean {
         return PreferenceFragment::class.java.name == fragmentName
                 || GeneralPreferenceFragment::class.java.name == fragmentName
-                || DataSyncPreferenceFragment::class.java.name == fragmentName
+                || LanguageFragment::class.java.name == fragmentName
                 || NotificationPreferenceFragment::class.java.name == fragmentName
                 || ResetFragment::class.java.name == fragmentName
     }
@@ -96,12 +116,13 @@ class SettingsActivity : PreferenceActivity() {
 
         private fun confirmDialog() {
             AlertDialog.Builder(activity)
-                    .setMessage("Are you sure?").setPositiveButton("Yes") { dialog, id ->
+                    .setMessage(resources.getString(R.string.dialog_confirm_title))
+                    .setPositiveButton(resources.getString(R.string.dialog_confirm_yes)) { dialog, id ->
                         removeAllData()
-                        Toast.makeText(activity, "All data was removed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, resources.getString(R.string.deleted_all), Toast.LENGTH_SHORT).show()
                     }
-                    .setNegativeButton("No") { dialog, id ->
-                        Toast.makeText(activity, "No data was removed", Toast.LENGTH_SHORT).show()
+                    .setNegativeButton(resources.getString(R.string.dialog_confirm_no)) { dialog, id ->
+                        Toast.makeText(activity, resources.getString(R.string.deleted_all_canceled), Toast.LENGTH_SHORT).show()
                         dialog.cancel()
                     }
                     .show()
@@ -192,31 +213,39 @@ class SettingsActivity : PreferenceActivity() {
      * activity is showing a two-pane settings UI.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    class DataSyncPreferenceFragment : PreferenceFragment() {
+    class LanguageFragment : PreferenceFragment() {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            addPreferencesFromResource(R.xml.pref_data_sync)
-            setHasOptionsMenu(true)
+            addPreferencesFromResource(R.xml.pref_language)
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("sync_frequency"))
+//            preference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener{p, v ->
+//                val language = v as String
+//                p.summary = language
+//                PublicMethods.setLocale(language, p.context)
+//                true
+//            }
+            bindPreferenceSummaryToValue(findPreference("language"))
         }
+    }
 
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, SettingsActivity::class.java))
-                return true
+    class LanguageChangeListener(val activity: Activity) : SharedPreferences.OnSharedPreferenceChangeListener {
+        override fun onSharedPreferenceChanged(s: SharedPreferences?, k: String?) {
+            if (k == "language") {
+                Log.d("TEST", "MASHOOK PAK EKO!")
+                val lang = s!!.getString(k, "English")
+                PublicMethods.setLocale(lang, activity)
+                val intent = Intent(activity, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                activity.startActivity(intent)
             }
-            return super.onOptionsItemSelected(item)
         }
     }
 
     companion object {
-
         /**
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.
@@ -236,7 +265,6 @@ class SettingsActivity : PreferenceActivity() {
                             listPreference.entries[index]
                         else
                             null)
-
             } else if (preference is RingtonePreference) {
                 // For ringtone preferences, look up the correct display value
                 // using RingtoneManager.
@@ -287,7 +315,6 @@ class SettingsActivity : PreferenceActivity() {
         private fun bindPreferenceSummaryToValue(preference: Preference) {
             // Set the listener to watch for value changes.
             preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
-
             // Trigger the listener immediately with the preference's
             // current value.
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,

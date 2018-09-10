@@ -30,9 +30,9 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun setupDate(date: Date) {
-        val dateText = date.getDayName() + ", " +
+        val dateText = date.getDayName(this) + ", " +
                 date.day.toString() + " " +
-                Date.MonthName(date.month) + " " +
+                Date.MonthName(this, date.month) + " " +
                 date.year.toString()
         tvDate.setText(dateText)
     }
@@ -49,9 +49,14 @@ class HistoryActivity : AppCompatActivity() {
         btnPreviousDay.setOnClickListener{ _ ->
             changeDate(Date(currentDatestamp).yesterday())
         }
+        viewPreviousDay.setOnClickListener{ _ ->
+            changeDate(Date(currentDatestamp).yesterday())
+        }
         btnNextDay.setOnClickListener{ _ ->
             changeDate(Date(currentDatestamp).tommorow())
-            Log.d("TEST", "tomorrow")
+        }
+        viewNextDay.setOnClickListener{ _ ->
+            changeDate(Date(currentDatestamp).tommorow())
         }
     }
 

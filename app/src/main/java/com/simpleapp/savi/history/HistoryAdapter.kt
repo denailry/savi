@@ -36,7 +36,10 @@ class HistoryAdapter(val items: ArrayList<Record>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(items.get(position)) {
             holder.tvActivityName.text = name
-            holder.tvActivityNote.text = notes
+            if (!notes.isEmpty()) {
+                holder.tvActivityNote.text = notes
+                holder.tvActivityNote.visibility = View.VISIBLE
+            }
             holder.tvActivityValue.text = PublicMethods.moneyFormat(value.toString())
             if (type == Record.INCOME) {
                 holder.tvActivityValue.setTextColor(context.resources.getColor(R.color.income))

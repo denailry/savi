@@ -32,8 +32,9 @@
                 android:id="@+id/tvActivityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/activity_name_hint"
+                android:text="@string/activity_name_hint_expense"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tvActivityNote"
@@ -42,7 +43,8 @@
                 android:text="@string/activity_note_hint"
                 android:textSize="12sp"
                 android:textColor="#999999"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:visibility="gone"/>
         </LinearLayout>
         <TextView
             android:id="@+id/tvActivityValue"

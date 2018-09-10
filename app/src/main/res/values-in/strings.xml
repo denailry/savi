@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="january">Januari</string>
+    <string name="february">Februari</string>
+    <string name="march">Maret</string>
+    <string name="april">April</string>
+    <string name="may">Mei</string>
+    <string name="june">Juni</string>
+    <string name="july">Juli</string>
+    <string name="august">Agustus</string>
+    <string name="september">September</string>
+    <string name="october">Oktober</string>
+    <string name="november">November</string>
+    <string name="december">Desember</string>
+    <string name="monday">Senin</string>
+    <string name="tuesday">Selasa</string>
+    <string name="wednesday">Rabu</string>
+    <string name="thursday">Kamis</string>
+    <string name="friday">Jumat</string>
+    <string name="saturday">Sabtu</string>
+    <string name="sunday">Minggu</string>
+
+    <string name="activity_guidetext">Masukan Aktivitas Finansial Kamu</string>
+    <string name="activity_name">Nama</string>
+    <string name="activity_name_hint_expense">Apa yang tadi kamu bayar?</string>
+    <string name="activity_name_hint_income">Apa yang tadi kamu dapatkan?</string>
+    <string name="activity_value">Harga</string>
+    <string name="activity_value_hint">Berapa harganya?</string>
+    <string name="activity_note">Catatan</string>
+    <string name="activity_note_hint">Ada rincian yang penting?</string>
+    <string name="activity_save">Simpan</string>
+    <string name="activity_delete">HAPUS</string>
+    <string name="deleted">Terhapus</string>
+    <string name="deleted_all">Semua data sudah dihapus</string>
+    <string name="deleted_all_canceled">Tidak ada data yang dihapus</string>
+    <string name="activity_history">Aktivitas Lampau</string>
+    <string name="daily_income">PEMASUKAN</string>
+    <string name="daily_expense">PENGELUARAN</string>
+    <string name="wallet_balance">SALDO</string>
+    <string name="activity_type_income">MASUK</string>
+    <string name="activity_type_expense">KELUAR</string>
+    <string name="calculator_save">SELESAI</string>
+
+    <string name="large_number_exception">Ups, angkanya terlalu besar</string>
+    <string name="wallet_limit_exception">Ups, dompet tidak cukup besar</string>
+
+    <string name="dialog_confirm_title">Apa kamu yakin?</string>
+    <string name="dialog_confirm_yes">Yakin</string>
+    <string name="dialog_confirm_no">Tidak</string>
+
+    <string name="action_setting">Pengaturan</string>
+    <string name="title_activity_settings">Pengaturan</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_reset">Atur Ulang</string>
+    <string name="reset_description">Hapus semua data yang disimpan.</string>
+    <string name="reset_caution">Hati-hati, tindakan inin tidak bisa dibatalkan!</string>
+    <string name="reset_textguide">Tulis ulang tulisan di bawah:</string>
+    <string name="reset_copytext">Saya yakin untuk menghapus data saya</string>
+
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_language">Bahasa</string>
+    <string name="pref_description_language">
+        Ganti bahasa sesuai dengan keinginan.
+    </string>
+    <string-array name="pref_language_titles">
+        <item>English</item>
+        <item>Indonesia</item>
+    </string-array>
+    <string-array name="pref_language_values">
+        <item>English</item>
+        <item>Indonesia</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+</resources>

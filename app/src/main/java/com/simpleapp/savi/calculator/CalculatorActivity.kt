@@ -129,7 +129,11 @@ class CalculatorActivity : AppCompatActivity() {
             } else {
                 try {
                     intent = Intent()
-                    intent.putExtra("value", formatter!!.getOriginal().toLong())
+                    if (formatter!!.getOriginal().isEmpty()) {
+                        intent.putExtra("value", 0L)
+                    } else {
+                        intent.putExtra("value", formatter!!.getOriginal().toLong())
+                    }
                     setResult(Activity.RESULT_OK, intent)
                     finish()
                 } catch (e: Exception) {

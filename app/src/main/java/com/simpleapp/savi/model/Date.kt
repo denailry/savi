@@ -1,5 +1,7 @@
 package com.simpleapp.savi.model
 
+import android.content.Context
+import com.simpleapp.savi.R
 import java.util.*
 
 class Date(datestamp: Int? = null) {
@@ -23,20 +25,20 @@ class Date(datestamp: Int? = null) {
 
     companion object {
 
-        fun MonthName(monthNumber: Int) : String? {
+        fun MonthName(context: Context, monthNumber: Int) : String? {
             when(monthNumber) {
-                0 -> return "January"
-                1 -> return "February"
-                2 -> return "March"
-                3 -> return "April"
-                4 -> return "May"
-                5 -> return "June"
-                6 -> return "July"
-                7 -> return "August"
-                8 -> return "September"
-                9 -> return "October"
-                10 -> return "November"
-                11 -> return "December"
+                0 -> return context.resources.getString(R.string.january)
+                1 -> return context.resources.getString(R.string.february)
+                2 -> return context.resources.getString(R.string.march)
+                3 -> return context.resources.getString(R.string.april)
+                4 -> return context.resources.getString(R.string.may)
+                5 -> return context.resources.getString(R.string.june)
+                6 -> return context.resources.getString(R.string.july)
+                7 -> return context.resources.getString(R.string.august)
+                8 -> return context.resources.getString(R.string.september)
+                9 -> return context.resources.getString(R.string.october)
+                10 -> return context.resources.getString(R.string.november)
+                11 -> return context.resources.getString(R.string.december)
             }
             return null
         }
@@ -54,16 +56,16 @@ class Date(datestamp: Int? = null) {
         this.year = calendar.get(Calendar.YEAR)
     }
 
-    fun getDayName() : String? {
+    fun getDayName(context: Context) : String? {
         val calendar = GregorianCalendar(year, month, day)
         when(calendar.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY -> return "Monday"
-            Calendar.TUESDAY -> return "Tuesday"
-            Calendar.WEDNESDAY -> return "Wednesday"
-            Calendar.THURSDAY -> return "Thursday"
-            Calendar.FRIDAY -> return "Friday"
-            Calendar.SATURDAY -> return "Saturday"
-            Calendar.SUNDAY -> return "Sunday"
+            Calendar.MONDAY -> return context.resources.getString(R.string.monday)
+            Calendar.TUESDAY -> return context.resources.getString(R.string.tuesday)
+            Calendar.WEDNESDAY -> return context.resources.getString(R.string.wednesday)
+            Calendar.THURSDAY -> return context.resources.getString(R.string.thursday)
+            Calendar.FRIDAY -> return context.resources.getString(R.string.friday)
+            Calendar.SATURDAY -> return context.resources.getString(R.string.saturday)
+            Calendar.SUNDAY -> return context.resources.getString(R.string.sunday)
         }
         return null
     }

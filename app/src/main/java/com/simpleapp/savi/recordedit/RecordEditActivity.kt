@@ -1,12 +1,14 @@
 package com.simpleapp.savi.recordedit
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import com.simpleapp.savi.R
 import com.simpleapp.savi.TransactionManager
 import com.simpleapp.savi.calculator.CalculatorActivity
@@ -108,8 +110,7 @@ class RecordEditActivity : AppCompatActivity() {
             }
         }
         btnDeleteActivity.setOnClickListener{_ ->
-            TransactionManager.delete(record!!)
-            finish()
+            confirmDialog()
         }
         inActivityValue.setOnClickListener{_ ->
             val value : Long
@@ -126,6 +127,20 @@ class RecordEditActivity : AppCompatActivity() {
             if (activityType == Record.EXPENSE) activityType = Record.INCOME else activityType = Record.EXPENSE
             refreshActivityType()
         }
+    }
+
+    private fun confirmDialog() {
+        AlertDialog.Builder(this)
+                .setMessage(resources.getString(R.string.dialog_confirm_title))
+                .setPositiveButton(resources.getString(R.string.dialog_confirm_yes)) { dialog, id ->
+                    TransactionManager.delete(record!!)
+                    Toast.makeText(this, resources.getString(R.string.deleted), Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                .setNegativeButton(resources.getString(R.string.dialog_confirm_no)) { dialog, id ->
+                    dialog.cancel()
+                }
+                .show()
     }
 
     private fun refreshActivityType() {

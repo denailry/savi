@@ -25,6 +25,7 @@
                 android:paddingBottom="15dp"
                 android:gravity="center"/>
             <RelativeLayout
+                android:id="@+id/viewPreviousDay"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:background="@color/colorAccentLight"
@@ -40,6 +41,7 @@
                     android:textSize="30sp" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/viewNextDay"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:background="@color/colorAccentLight"
